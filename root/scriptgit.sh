@@ -68,8 +68,8 @@ then
 
 
 
-    # copy scripts from ~/.bingit directory to appropriate locations and set permissions
-    ####################################################################################
+    # copy scripts from /.scriptgit directory to appropriate locations and set permissions
+    ######################################################################################
 
     cp -r /.scriptgit/* /scripts
     chown -R root:root /scripts
