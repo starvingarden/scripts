@@ -11,4 +11,4 @@ tldr --update
 updatedb
 
 # run reflector
-sudo systemctl start reflector.service
+systemctl start reflector.service

@@ -1,1 +1,1 @@
-this directory contians scripts that will be run regularly by any user
+this directory contains scripts that can be run by any user
