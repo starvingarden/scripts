@@ -42,6 +42,16 @@ then
 
 
 
+    # set permissions for scripts
+    #############################
+
+    chown -R root:root /.scriptgit
+    chmod -R 755 /.scriptgit/all
+    chmod 755 /.scriptgit/root
+    chmod 754 /.scriptgit/root/*
+
+
+
     # push scripts to online git repo
     #################################
 
@@ -68,10 +78,16 @@ then
 
 
 
-    # copy scripts from /.scriptgit directory to appropriate locations and set permissions
-    ######################################################################################
+    # copy scripts from /.scriptgit directory to appropriate location
+    #################################################################
 
     cp -r /.scriptgit/* /scripts
+
+
+
+    # set permissions for scripts
+    #############################
+
     chown -R root:root /scripts
     chmod -R 755 /scripts/all
     chmod 755 /scripts/root
