@@ -10,6 +10,22 @@ action=$1
 
 
 
+# check that script is running as root
+######################################
+
+currentUser=$(whoami)
+if [ "$currentUser" == root ]
+then
+    continue
+else
+    echo "this script must be run as root"
+    exit
+fi
+
+
+
+
+
 # configure the git repo
 ########################
 
