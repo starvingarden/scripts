@@ -35,20 +35,20 @@ git --git-dir=/.scriptgit/.git --work-tree=/.scriptgit remote add origin https:/
 if [ "$action" == push ]
 then
 
+    # set permissions for scripts
+    #############################
+
+    chown -R root:root /scripts
+    chmod -R 755 /scripts/all
+    chmod 755 /scripts/root
+    chmod 754 /scripts/root/*
+
+
+    
     # copy scripts to the /.scriptgit directory
     ###########################################
 
     cp -r /scripts/* /.scriptgit
-
-
-
-    # set permissions for scripts
-    #############################
-
-    chown -R root:root /.scriptgit
-    chmod -R 755 /.scriptgit/all
-    chmod 755 /.scriptgit/root
-    chmod 754 /.scriptgit/root/*
 
 
 
