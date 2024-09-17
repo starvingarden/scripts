@@ -51,20 +51,15 @@ git --git-dir=/.sysgit/.git --work-tree=/.sysgit remote add origin https://githu
 if [ "$action" == push ]
 then
 
-    # set permissions for scripts
-    #############################
-
-    #chown -R root:root /scripts
-    #chmod -R 755 /scripts/all
-    #chmod 755 /scripts/root
-    #chmod 754 /scripts/root/*
+    # set permissions for system files
+    ##################################
 
 
-    
+
     # copy system files to the /.sysgit directory
     #############################################
 
-    #cp -r /scripts/* /.scriptgit
+    cp /etc/systemd/system/snapshot* /.sysgit
 
 
 
@@ -97,7 +92,7 @@ then
     # copy system files from /.sysgit directory to appropriate locations
     ####################################################################
 
-    #cp -r /.sysgit/* /scripts
+    cp /.sysgit/snapshot* /etc/systemd/system
 
 
 
@@ -108,5 +103,10 @@ then
     #chmod -R 755 /scripts/all
     #chmod 755 /scripts/root
     #chmod 754 /scripts/root/*
+
+
+
+    # enable appropriate system services
+    systemctl enable snapshot-daily.timer
 
 fi
