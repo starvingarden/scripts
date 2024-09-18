@@ -55,6 +55,13 @@ then
     ##################################
 
 
+    
+    # create appropritate directories to save system files
+    ######################################################
+
+    mkdir /.sysgit/systemd
+
+
 
     # copy system files to the /.sysgit directory
     #############################################
@@ -99,14 +106,12 @@ then
     # set permissions for system files
     ##################################
 
-    #chown -R root:root /scripts
-    #chmod -R 755 /scripts/all
-    #chmod 755 /scripts/root
-    #chmod 754 /scripts/root/*
 
 
+    # enable appropriate systemd units
+    ##################################
 
-    # enable appropriate system services
+    systemctl daemon-reload
     systemctl enable snapshot-hourly.timer
     systemctl enable snapshot-daily.timer
     systemctl enable snapshot-weekly.timer
