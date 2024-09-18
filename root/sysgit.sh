@@ -59,7 +59,7 @@ then
     # copy system files to the /.sysgit directory
     #############################################
 
-    cp /etc/systemd/system/snapshot* /.sysgit
+    cp /etc/systemd/system/snapshot* /.sysgit/systemd
 
 
 
@@ -92,7 +92,7 @@ then
     # copy system files from /.sysgit directory to appropriate locations
     ####################################################################
 
-    cp /.sysgit/snapshot* /etc/systemd/system
+    cp /.sysgit/systemd/* /etc/systemd/system
 
 
 
@@ -107,6 +107,8 @@ then
 
 
     # enable appropriate system services
+    systemctl enable snapshot-hourly.timer
     systemctl enable snapshot-daily.timer
+    systemctl enable snapshot-weekly.timer
 
 fi
