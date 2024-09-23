@@ -4,6 +4,17 @@
 
 # run by appending either "push" to push system file changes to github, or "pull" to pull system file changes from github
 
+
+
+# notable arch wiki pages
+#########################
+
+# System backup#Snapshots and /boot partition
+
+
+
+
+
 action=$1
 
 
@@ -67,6 +78,7 @@ then
     #############################################
 
     cp /etc/systemd/system/snapshot* /.sysgit/systemd
+    cp /etc/pacman.d/hooks/95-bootbackup.hook /.sysgit
 
 
 
@@ -96,10 +108,18 @@ then
 
 
 
+    # create appropritate directories for system files
+    ##################################################
+
+    mkdir /etc/pacman.d/hooks
+
+
+
     # copy system files from /.sysgit directory to appropriate locations
     ####################################################################
 
     cp /.sysgit/systemd/* /etc/systemd/system
+    cp /.sysgit/95-bootbackup.hook /etc/pacman.d/hooks
 
 
 
