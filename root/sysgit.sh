@@ -77,7 +77,11 @@ then
     # copy system files to the /.sysgit directory
     #############################################
 
-    cp /etc/systemd/system/snapshot* /.sysgit/systemd
+    cp /etc/systemd/system/malware* /.sysgit/systemd
+    cp /etc/systemd/system/network-online.service /.sysgit/systemd
+    cp /etc/systemd/system/snapshot-* /.sysgit/systemd
+    cp /etc/systemd/system/trash* /.sysgit/systemd
+    cp /etc/systemd/system/update* /.sysgit/systemd
     cp /etc/pacman.d/hooks/95-bootbackup.hook /.sysgit
 
 
@@ -132,8 +136,13 @@ then
     ##################################
 
     systemctl daemon-reload
+    #systemctl enable malware.timer
     systemctl enable snapshot-hourly.timer
     systemctl enable snapshot-daily.timer
     systemctl enable snapshot-weekly.timer
+    systemctl enable trash.timer
+    systemctl --global enable trash.timer
+    systemctl enable update.timer
+    systemctl --global enable update.timer
 
 fi
