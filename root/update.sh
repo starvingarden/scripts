@@ -7,7 +7,7 @@ mandb
 # update tldr pages
 tldr --update
 
-# update mlocate database
+# update plocate database
 updatedb
 
 # run reflector
