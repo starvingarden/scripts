@@ -11,6 +11,16 @@ currentTime=$(date)
 
 
 
+# create read-only btrfs snapshots
+##################################
+
+btrfs subvolume snapshot -r / /.snapshots/root/"$snapshotType"/"$currentTime"
+btrfs subvolume snapshot -r /home /.snapshots/home/"$snapshotType"/"$currentTime"
+
+
+
+
+
 # clean up old snapshots
 ########################
 
@@ -19,7 +29,7 @@ while true
 do
 # get number of existing root snapshots
 rootsnapshotCount=$(btrfs subvolume list -o /.snapshots | grep 'root' | grep -c "$snapshotType")
-    if [ "$rootsnapshotCount" -ge "$maxsnapshotCount" ]
+    if [ "$rootsnapshotCount" -gt "$maxsnapshotCount" ]
     then
         # get name of oldest root snapshot
         oldestrootSnapshot=$(btrfs subvolume list -o /.snapshots | grep 'root' | grep "$snapshotType" | head -n 1 | grep -Eo 'snapshots[[:print:]]*$')
@@ -32,12 +42,13 @@ rootsnapshotCount=$(btrfs subvolume list -o /.snapshots | grep 'root' | grep -c 
 done
 
 
+
 # delete old home snapshots
 while true
 do
 # get number of existing home snapshots
 homesnapshotCount=$(btrfs subvolume list -o /.snapshots | grep 'home' | grep -c "$snapshotType")
-    if [ "$homesnapshotCount" -ge "$maxsnapshotCount" ]
+    if [ "$homesnapshotCount" -gt "$maxsnapshotCount" ]
     then
         # get name of oldest home snapshot
         oldesthomeSnapshot=$(btrfs subvolume list -o /.snapshots | grep 'home' | grep "$snapshotType" | head -n 1 | grep -Eo 'snapshots[[:print:]]*$')
@@ -48,13 +59,3 @@ homesnapshotCount=$(btrfs subvolume list -o /.snapshots | grep 'home' | grep -c 
         break
     fi
 done
-
-
-
-
-
-# create read-only btrfs snapshots
-##################################
-
-btrfs subvolume snapshot -r / /.snapshots/root/"$snapshotType"/"$currentTime"
-btrfs subvolume snapshot -r /home /.snapshots/home/"$snapshotType"/"$currentTime"
