@@ -140,6 +140,8 @@ then
     systemctl enable snapshot-hourly.timer
     systemctl enable snapshot-daily.timer
     systemctl enable snapshot-weekly.timer
+    systemctl enable snapshot-monthly.timer
+    systemctl enable snapshot-yearly.timer
     systemctl enable trash.timer
     systemctl --global enable trash.timer
     systemctl enable update.timer
