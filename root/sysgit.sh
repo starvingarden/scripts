@@ -78,7 +78,7 @@ then
     #############################################
 
     cp /etc/systemd/system/malware* /.sysgit/systemd
-    cp /etc/systemd/system/network-online.service /.sysgit/systemd
+    #cp /etc/systemd/system/network-online.service /.sysgit/systemd
     cp /etc/systemd/system/snapshot-* /.sysgit/systemd
     cp /etc/systemd/system/trash* /.sysgit/systemd
     cp /etc/systemd/system/update* /.sysgit/systemd
