@@ -145,6 +145,5 @@ then
     systemctl enable trash.timer
     systemctl --global enable trash.timer
     systemctl enable update.timer
-    systemctl --global enable update.timer
 
 fi
