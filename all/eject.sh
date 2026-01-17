@@ -37,6 +37,7 @@ do
 	then
 		diskPath=/dev/"$disk"
 		#echo -e "diskPath=$diskPath"
+		sudo hdparm -Y "$diskPath"
 		udisksctl power-off --block-device="$diskPath"
 		echo -e "Powered-off $disk"
 	fi
